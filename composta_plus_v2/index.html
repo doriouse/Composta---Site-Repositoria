@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Composta+ | Plataforma de Compostagem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#inicio"><span class="mark">+</span>Composta<span>+</span></a>
+<button id="menuBtn">☰</button><nav id="nav"><a href="#inicio">Início</a><a href="#perfil">Perfil</a><a href="#composteira">Composteira</a><a href="#impacto">Impacto</a><a href="#clima">Clima</a><a href="#tutoriais">Tutoriais</a><a href="#videos">Vídeos</a><a href="#ranking">Ranking</a><a href="#admin">Admin</a></nav>
+</header>
+
+<main>
+<section id="inicio" class="hero section">
+ <div>
+  <span class="eyebrow">🌱 PLATAFORMA INTERATIVA</span>
+  <h1>Transforme resíduos em <em>vida.</em></h1>
+  <p>Aprenda, cuide da sua composteira, acompanhe seu impacto real e participe de desafios.</p>
+  <div class="journey-line">APRENDER → FAZER → ACOMPANHAR → IMPACTAR</div>
+  <div class="actions"><a class="btn primary" href="#perfil">Criar meu perfil →</a><a class="btn ghost" href="#composteira">Minha composteira</a></div>
+  <div class="stats"><span><b id="heroLevel">1</b> nível</span><span><b id="heroXP">0</b> XP</span><span><b id="heroKg">0</b> kg</span><span><b id="heroSacos">0</b> sacos poupados</span></div>
+ </div>
+ <div class="hero-art"><div class="sun"></div><div class="hills"></div><div class="hero-emoji">🪱</div><div class="floating">♻️<br><small>resíduo → vida</small></div></div>
+</section>
+
+<div class="impact-banner" id="impactBanner">🌎 Você já evitou que <b id="bannerKg">0 kg</b> de resíduos fossem para o lixo.</div>
+
+<section id="perfil" class="section tinted"><div class="section-head"><span class="eyebrow">01 · PERFIL</span><h2>Sua jornada começa aqui.</h2><p>Crie um perfil localmente ou entre no modo demonstração. O progresso fica salvo neste navegador.</p></div>
+<div class="profile-grid">
+ <div class="card profile-card"><div class="avatar" id="avatar">🌱</div><div><h3 id="profileName">Visitante</h3><p id="profileEmail">Ainda não cadastrado</p><small id="profileTitle" class="kg-title"></small></div><button class="btn primary" id="profileBtn">Criar / editar perfil</button></div>
+ <div class="card level-card"><span>NÍVEL <b id="levelNum">1</b></span><strong id="levelTitle">Semente</strong><div class="levelbar"><i id="levelBar"></i></div><small id="levelText">0 / 100 XP para o próximo nível</small></div>
+</div>
+<div class="card badges-card"><h3>🏆 Conquistas</h3><p>Desbloqueadas automaticamente pelo seu impacto real, não só por cliques.</p><div id="badgesList" class="badges"></div></div>
+<div class="admin-toggle"><button class="btn ghost" id="adminToggleBtn">🔐 Entrar como administrador</button><small id="adminStatus"></small></div>
+</section>
+
+<section id="composteira" class="section"><div class="section-head"><span class="eyebrow">02 · MINHA COMPOSTEIRA</span><h2>Acompanhe sua composteira.</h2><p>Registre materiais por peso, avance os dias e veja seu impacto crescer.</p></div>
+
+<div class="card impact-card" id="impacto">
+ <h3>🌱 Minha jornada</h3>
+ <div class="impact-grid">
+  <div class="impact-item"><b id="iKg">0 kg</b><span>compostados</span></div>
+  <div class="impact-item"><b id="iSacos">0</b><span>sacos de lixo poupados</span></div>
+  <div class="impact-item"><b id="iCompost">0 L</b><span>composto estimado</span></div>
+  <div class="impact-item"><b id="iDays">0</b><span>dias cuidando</span></div>
+  <div class="impact-item"><b id="iXP">0</b><span>XP conquistados</span></div>
+ </div>
+ <small class="estimate-note">Valores estimados (1 saco ≈ 0,4 kg de resíduos). O peso real varia conforme o material.</small>
+ <div class="chart-wrap"><h4>📈 Evolução dos resíduos compostados</h4><svg id="kgChart" viewBox="0 0 640 200" preserveAspectRatio="none"></svg></div>
+</div>
+
+<div class="composter-grid">
+<div class="card composter">
+ <div class="stage"><span id="cDay">Dia 0</span><span id="cStatus">Vazia</span></div>
+ <div class="bin"><div id="dryLayer"></div><div id="foodLayer"></div><div id="matureLayer"></div></div>
+ <div class="material-buttons"><button data-add="dry">🍂 Seco</button><button data-add="food">🥬 Resíduo</button><button data-add="mature">🟤 Composto</button></div>
+ <div class="weight-register"><label>⚖️ Registrar resíduos por peso (kg)</label><div class="weight-row"><input type="number" id="wasteKgInput" min="0" step="0.1" value="0.5"><button class="btn primary" id="registerKg">Registrar</button></div></div>
+ <button class="btn primary full" id="advance">⏩ Avançar 7 dias</button>
+</div>
+<div class="card dashboard"><h3>Indicadores</h3><div class="metric"><span>🌡️ Temperatura</span><b id="temp">24°C</b></div><div class="metric"><span>💧 Umidade</span><b id="moist">—</b></div><div class="metric"><span>🦠 Decomposição</span><b id="decomp">0%</b></div><div class="metric"><span>⚖️ Resíduos</span><b id="weight">0 kg</b></div><div class="advice" id="advice">Adicione materiais para começar.</div></div>
+</div>
+
+<div class="card waste-bank-card"><h3>🗑️ Posso compostar isso?</h3><p>Consulte o banco de resíduos (mantido pela administração).</p><div class="weight-row"><input id="wasteSearch" placeholder="Ex.: casca de banana, óleo, papelão..."><button class="btn primary" id="wasteSearchBtn">Consultar</button></div><div id="wasteSearchResult" class="waste-results"></div></div>
+
+<div class="card photo-card"><h3>📸 Diário da composteira</h3><p>Registre o que aconteceu hoje. Isso alimenta seu impacto automaticamente.</p>
+ <input type="file" id="photoInput" accept="image/*">
+ <div class="diary-checks">
+  <label><input type="checkbox" id="chkResiduo"> Adicionei resíduos</label>
+  <label><input type="checkbox" id="chkSeco"> Adicionei material seco</label>
+  <label><input type="checkbox" id="chkMisturei"> Misturei</label>
+  <label><input type="checkbox" id="chkRetirei"> Retirei composto</label>
+ </div>
+ <input id="photoNote" placeholder="Observação (ex.: composteira um pouco úmida)">
+ <label class="small-label">Peso adicionado hoje (kg)</label>
+ <input type="number" id="diaryKg" min="0" step="0.1" value="0">
+ <button class="btn primary" id="savePhoto">Salvar registro</button>
+ <div id="photoDiary" class="diary"></div>
+</div>
+</section>
+
+<section id="clima" class="section tinted"><div class="section-head"><span class="eyebrow">03 · CLIMA</span><h2>O tempo também participa da compostagem.</h2><p>Consulte uma previsão e receba uma recomendação. Informe uma cidade.</p></div>
+<div class="weather-box card"><div class="weather-input"><input id="city" value="São Paulo" placeholder="Cidade"><button class="btn primary" id="weatherBtn">Consultar clima</button></div><div id="weatherResult" class="weather-result"><div class="empty">🌦️ <b>Aguardando consulta</b><span>Usaremos dados meteorológicos públicos.</span></div></div></div></section>
+
+<section id="tutoriais" class="section"><div class="section-head"><span class="eyebrow">04 · APRENDA</span><h2>Tutoriais interativos.</h2><p>Aprenda por etapas e marque cada parte como concluída.</p></div><div id="tutorials" class="tutorial-grid"></div></section>
+
+<section id="videos" class="section tinted"><div class="section-head"><span class="eyebrow">05 · ASSISTA</span><h2>Central de vídeos.</h2><p>Conteúdo curto organizado por dificuldade. Os links podem ser trocados pelo administrador.</p></div><div class="filters"><button class="filter active" data-level="Todos">Todos</button><button class="filter" data-level="Iniciante">Iniciante</button><button class="filter" data-level="Intermediário">Intermediário</button><button class="filter" data-level="Avançado">Avançado</button></div><div id="videosList" class="video-grid"></div></section>
+
+<section id="ranking" class="section dark"><div class="section-head light"><span class="eyebrow">06 · COMUNIDADE</span><h2>Top compostadores.</h2><p>Ranking semanal demonstrativo, medido por impacto real (kg) e XP. O modo online pode ser conectado a um backend.</p></div><div id="rankingList" class="ranking-list"></div><div class="challenge card dark-card"><span>🎯 DESAFIO DA SEMANA</span><h3>Reaproveite 2 kg de resíduos.</h3><p>Complete a meta e ganhe 100 XP.</p><div class="challenge-progress"><i id="challengeBar"></i></div><button class="btn primary" id="challengeBtn">Registrar 0,5 kg</button></div></section>
+
+<section id="experimentos" class="section"><div class="section-head"><span class="eyebrow">07 · LABORATÓRIO</span><h2>Experimentos e desafios.</h2></div><div class="experiment-grid">
+<article class="card experiment mixer">
+ <span>🧪</span><h3>Monte sua mistura</h3><p>Informe as quantidades reais (kg) e veja se sua composteira ficará equilibrada.</p>
+ <div class="mixer-group"><b>Material úmido</b>
+  <label>🥬 Restos de alimentos (kg) <input type="number" id="mWetFood" min="0" step="0.1" value="0"></label>
+  <label>🍌 Cascas (kg) <input type="number" id="mWetPeel" min="0" step="0.1" value="0"></label>
+ </div>
+ <div class="mixer-group"><b>Material seco</b>
+  <label>🍂 Folhas (kg) <input type="number" id="mDryLeaf" min="0" step="0.1" value="0"></label>
+  <label>📦 Papelão (kg) <input type="number" id="mDryCard" min="0" step="0.1" value="0"></label>
+ </div>
+ <div class="mixer-bars"><div class="mixer-bar-wrap"><span>Úmido</span><div class="mixer-bar"><i id="mixWetBar"></i></div></div><div class="mixer-bar-wrap"><span>Seco</span><div class="mixer-bar"><i id="mixDryBar"></i></div></div></div>
+ <strong id="simResult">Informe as quantidades.</strong>
+ <small class="estimate-note">Estimativa educativa; o equilíbrio real depende do material específico.</small>
+</article>
+<article class="card experiment"><span>🧪</span><h3>Quiz rápido</h3><p>Qual destes é um bom material seco?</p><div id="miniQuiz"><button data-answer="no">🥤 Garrafa PET</button><button data-answer="yes">🍂 Folhas secas</button><button data-answer="no">🛢️ Óleo</button></div><b id="quizFeedback"></b></article>
+<article class="card experiment"><span>🪱</span><h3>Quanto você aprendeu?</h3><p>Complete desafios, acumule XP e desbloqueie níveis.</p><button class="btn primary" id="experimentXP">Concluir experimento +25 XP</button></article>
+</div></section>
+
+<section id="admin" class="section tinted"><div class="section-head"><span class="eyebrow">08 · ADMINISTRAÇÃO</span><h2>Painel administrativo.</h2><p>Cadastre conteúdos sem editar HTML. Nesta versão, os dados ficam no navegador do administrador.</p></div>
+<div id="adminLocked" class="card admin-lock"><h3>🔒 Área restrita</h3><p>Entre como administrador para cadastrar tutoriais, vídeos, desafios e o banco de resíduos.</p><button class="btn primary" id="adminLockedBtn">Entrar como administrador</button><small>Login de teste: <b>adm / adm</b></small></div>
+<div id="adminPanel" class="admin-panel">
+<div class="admin-grid">
+<div class="card admin-card"><h3>Adicionar tutorial</h3><input id="aTitle" placeholder="Título"><input id="aDesc" placeholder="Descrição"><input id="aSteps" placeholder="Etapas separadas por |"><button class="btn primary" id="addTutorial">Adicionar tutorial</button></div>
+<div class="card admin-card"><h3>Adicionar vídeo</h3><input id="vTitle" placeholder="Título"><input id="vUrl" placeholder="URL do YouTube"><select id="vLevel"><option>Iniciante</option><option>Intermediário</option><option>Avançado</option></select><button class="btn primary" id="addVideo">Adicionar vídeo</button></div>
+<div class="card admin-card"><h3>Adicionar desafio</h3><input id="dTitle" placeholder="Nome do desafio"><input id="dXP" type="number" placeholder="XP"><button class="btn primary" id="addChallenge">Adicionar desafio</button><div id="adminChallenges"></div></div>
+</div>
+<div class="card admin-card waste-admin"><h3>🗑️ Banco de resíduos</h3><p>Alimenta a busca "Posso compostar isso?" em toda a plataforma.</p>
+ <input id="wName" placeholder="Nome (ex.: Casca de abacaxi)">
+ <select id="wCategory"><option>Orgânico</option><option>Seco</option><option>Não compostável</option></select>
+ <select id="wCanCompost"><option value="sim">Pode compostar: SIM</option><option value="nao">Pode compostar: NÃO</option></select>
+ <select id="wDifficulty"><option>Fácil</option><option>Médio</option><option>Difícil</option></select>
+ <input id="wTip" placeholder="Dica (ex.: cortar em pedaços menores)">
+ <input id="wWeight" placeholder="Peso aproximado (ex.: 80 g/unidade)">
+ <button class="btn primary" id="addWaste">Adicionar ao banco</button>
+ <div id="adminWasteList" class="waste-admin-list"></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer><div class="brand"><span class="mark">+</span>Composta<span>+</span></div><p>Uma plataforma para aprender, praticar e transformar resíduos em vida.</p></footer>
+<div class="modal" id="modal"><div class="modal-box"><button id="close">×</button><div id="modalContent"></div></div></div><div id="toast" class="toast"></div>
+<script src="js/app.js"></script>
+</body></html>

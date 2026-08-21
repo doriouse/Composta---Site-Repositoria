@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2f6b3a">
+<meta name="description" content="Composta+ V5 — aprenda compostagem em casa de forma prática, didática e gamificada.">
+<title>Composta+ V5 — Aprender • Fazer • Acompanhar • Impactar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<header>
+  <a class="brand" href="#inicio">🌱 <b>Composta+</b></a>
+  <nav id="nav">
+    <a href="#inicio">Início</a><a href="#aprender">Aprender</a><a href="#fazer">Fazer</a>
+    <a href="#diagnostico">Diagnosticar</a><a href="#impacto">Impacto</a><a href="#conquistas">Conquistas</a>
+  </nav>
+  <button id="menu" class="mobile">☰</button>
+</header>
+<main>
+<section id="inicio" class="hero">
+  <div>
+    <span class="eyebrow">🌎 APRENDER → FAZER → ACOMPANHAR → IMPACTAR</span>
+    <h1>Transforme resíduos em <em>aprendizado e vida.</em></h1>
+    <p>Uma jornada prática para aprender compostagem, testar o que você aprendeu e cuidar da sua composteira com mais confiança.</p>
+    <div class="actions">
+      <button class="primary" data-go="#trilha">Continuar minha jornada →</button>
+      <button data-go="#fazer">Fazer uma ação prática</button>
+    </div>
+    <div class="proof">🎓 Microaulas · 🧠 Desafios · 🩺 Diagnóstico · 🏆 Progressão · 📊 Impacto</div>
+  </div>
+  <div class="card hero-card">
+    <div class="row"><b>Minha jornada</b><span id="level" class="pill">Nível 1</span></div>
+    <h2 id="title">Semente</h2>
+    <div class="bar"><i id="levelbar"></i></div>
+    <div class="mini">
+      <div><b id="heroKg">0 kg</b><small>compostados</small></div>
+      <div><b id="heroBags">0</b><small>sacos estimados</small></div>
+      <div><b id="heroXp">0 XP</b><small>XP</small></div>
+      <div><b id="heroDays">0</b><small>dias ativos</small></div>
+    </div>
+    <div class="next-action" id="nextAction">Próximo passo: complete uma missão.</div>
+  </div>
+</section>
+
+<section id="trilha">
+  <div class="heading">
+    <div><span class="eyebrow">🧭 SUA JORNADA</span><h2>Aprender e colocar em prática</h2><p>O próximo passo aparece de acordo com seu progresso.</p></div>
+    <span class="pill" id="counter">0/6</span>
+  </div>
+  <div class="journey" id="journey"></div>
+</section>
+
+<section id="aprender" class="tinted">
+  <div class="heading"><div><span class="eyebrow">🎓 APRENDER</span><h2>Microaulas + desafios</h2><p>Conteúdo curto, pergunta prática e aplicação real.</p></div></div>
+  <div id="lessons" class="grid3"></div>
+</section>
+
+<section id="fazer">
+  <div class="heading"><div><span class="eyebrow">🌱 FAZER</span><h2>Registre uma ação real</h2><p>Use o que aprendeu na sua própria rotina.</p></div></div>
+  <div class="two">
+    <div class="card">
+      <div class="row"><h3>Adicionar resíduo</h3><span class="pill">+15 XP</span></div>
+      <form id="wasteForm">
+        <label>Tipo<select id="wasteType"></select></label>
+        <label>Quantidade (kg)<input id="kg" type="number" min=".01" max="50" step=".01" required placeholder="0,50"></label>
+        <label>Observação<input id="note" maxlength="120" placeholder="Opcional"></label>
+        <button class="primary">🌱 Registrar</button>
+      </form>
+      <div id="tip" class="tip">Escolha um resíduo.</div>
+      <div id="learningFeedback" class="feedback hidden"></div>
+    </div>
+
+    <div class="card">
+      <div class="row"><h3>⚖️ Balancear úmido + seco</h3><span id="mixStatus" class="pill">Aguardando</span></div>
+      <div class="inputs"><label>Úmidos (kg)<input id="wet" type="number" min="0" step=".01" value="0"></label><label>Secos (kg)<input id="dry" type="number" min="0" step=".01" value="0"></label></div>
+      <div class="mixbar"><i id="mixbar"></i></div>
+      <p id="mixText">Informe os materiais para receber uma recomendação.</p>
+      <button id="apply" disabled>Adicionar recomendação aos secos</button>
+      <div class="microhint">💡 Aprender na prática: observe textura e cheiro além da proporção.</div>
+    </div>
+  </div>
+  <div class="card log"><div class="row"><h3>Diário da composteira</h3><button id="clear" class="link">Limpar</button></div><div id="logs">Ainda não há registros.</div></div>
+</section>
+
+<section id="diagnostico" class="tinted">
+  <div class="heading"><div><span class="eyebrow">🩺 DIAGNOSTICAR</span><h2>Como está sua composteira hoje?</h2><p>Responda 3 perguntas e receba um próximo passo.</p></div></div>
+  <div class="diagnosis-grid">
+    <div class="card question-card"><span class="question-step">1 de 3</span><h3>Como está o cheiro?</h3><div class="choice-row" data-group="odor"><button data-value="earth">🙂 Cheiro de terra</button><button data-value="strong">😐 Cheiro forte</button><button data-value="bad">😖 Cheiro desagradável</button></div></div>
+    <div class="card question-card"><span class="question-step">2 de 3</span><h3>Como está a umidade?</h3><div class="choice-row" data-group="moisture"><button data-value="dry">🏜️ Muito seca</button><button data-value="ok">👍 Úmida na medida</button><button data-value="wet">💧 Muito molhada</button></div></div>
+    <div class="card question-card"><span class="question-step">3 de 3</span><h3>Como está a aparência?</h3><div class="choice-row" data-group="appearance"><button data-value="normal">🟢 Normal</button><button data-value="unclear">🟡 Difícil de identificar</button><button data-value="problem">🔴 Com problema</button></div></div>
+  </div>
+  <div id="diagnosisResult" class="card diagnosis-result"><div class="result-icon">🪱</div><div><b>Seu diagnóstico vai aparecer aqui.</b><p>Escolha uma opção em cada pergunta.</p></div></div>
+</section>
+
+<section id="desafios">
+  <div class="heading"><div><span class="eyebrow">🔥 DESAFIOS</span><h2>Pratique fora da tela</h2><p>Pequenas ações ajudam o conhecimento a virar hábito.</p></div></div>
+  <div id="challenges" class="grid3"></div>
+</section>
+
+<section id="impacto" class="tinted">
+  <div class="heading"><div><span class="eyebrow">📊 ACOMPANHAR</span><h2>Seu impacto em números</h2><p>Valores calculados a partir do seu diário; são estimativas educativas.</p></div></div>
+  <div class="metrics">
+    <div><b id="mkg">0 kg</b><small>resíduos registrados</small></div>
+    <div><b id="mbags">0</b><small>sacos estimados poupados</small></div>
+    <div><b id="mcomp">0 kg</b><small>composto estimado</small></div>
+    <div><b id="mdays">0</b><small>dias com atividade</small></div>
+  </div>
+  <div class="two">
+    <div class="card"><h3>Evolução acumulada</h3><canvas id="chart"></canvas></div>
+    <div class="card"><h3>Próximo objetivo</h3><div class="goal">🏆 <div><b id="goal">Primeiros 500 g</b><p id="goalText"></p><div class="bar"><i id="goalbar"></i></div></div></div></div>
+  </div>
+</section>
+
+<section id="usar">
+  <div class="heading"><div><span class="eyebrow">🌿 IMPACTAR</span><h2>Leve o aprendizado para o jardim</h2><p>Veja onde aplicar o que você produziu.</p></div></div>
+  <div id="uses" class="grid3"></div>
+  <div class="warning"><b>🔎 Antes de usar:</b> prefira composto escuro, com aspecto uniforme e cheiro de terra. Se ainda estiver em decomposição intensa, espere mais.</div>
+</section>
+
+<section id="conquistas" class="tinted">
+  <div class="heading"><div><span class="eyebrow">🏆 PROGRESSÃO</span><h2>Conquistas e habilidades</h2><p>Recompensas ligadas ao que você pratica e aprende.</p></div></div>
+  <div class="skill-tree card" id="skillTree"></div>
+  <div id="badges" class="grid4"></div>
+</section>
+
+<section id="perfil">
+  <div class="heading"><div><span class="eyebrow">👤 PERFIL</span><h2>Seu perfil</h2><p>Personalize seu nome e acompanhe sua evolução.</p></div></div>
+  <div class="card profile"><div class="avatar">🌱</div><div class="grow"><input id="name" maxlength="30"><div class="row"><b id="plevel">Nível 1</b><span id="ptitle">Semente</span></div><div class="bar"><i id="pbar"></i></div><small id="xptext"></small></div><button id="saveProfile" class="primary">Salvar</button></div>
+  <div class="card admin"><div><h3>🛠️ Administração</h3><p>Modo local de demonstração: <b>adm / adm</b>.</p></div><button id="adminBtn">Entrar</button></div>
+</section>
+
+<section id="adminPanel" class="hidden">
+  <div class="heading"><div><span class="eyebrow">🛠️ ADMIN</span><h2>Painel administrativo</h2><p>Cadastre resíduos e ajuste as estimativas do protótipo.</p></div><button id="logout">Sair</button></div>
+  <div class="two">
+    <div class="card"><h3>Novo resíduo</h3><form id="adminForm"><label>Nome<input id="aname" maxlength="40" required></label><label>Categoria<input id="acat" maxlength="30" required></label><label>Dica<input id="atip" maxlength="120"></label><button class="primary">Adicionar</button></form></div>
+    <div class="card"><h3>Configurações</h3><label>Saco estimado (kg)<input id="bag" type="number" min=".05" max="10" step=".05"></label><label>Composto estimado (%)<input id="pct" type="number" min="1" max="90"></label><button id="saveConfig">Salvar</button></div>
+  </div>
+  <div id="adminList" class="card"></div>
+</section>
+</main>
+<footer><b>Composta+ V5</b><span>Aprender → Praticar → Diagnosticar → Acompanhar → Impactar</span><small>Protótipo educacional local</small></footer>
+<div id="modal" class="modal hidden"><div class="modalbox"><button id="close">×</button><div id="modalBody"></div></div></div>
+<script src="js/app.js"></script>
+</body></html>
